@@ -13,12 +13,32 @@
             <ComboBox Margin="0,0,0,0" SelectedIndex="0">
                 <ComboBoxItem>Bank card</ComboBoxItem>
                 <ComboBoxItem>Cash</ComboBoxItem>
+                <ComboBox.Effect>
+                    <DropShadowEffect RenderingBias="Performance" Opacity="0.2"/>
+                </ComboBox.Effect>
             </ComboBox>
             <TextBlock Margin="0,12,12,0" FontFamily="Serifiqo 4F Free Capitals" FontWeight="Bold">LOYALTY CARD</TextBlock>
-            <TextBox Background="#FEFFB7" Margin="0,2,0,0"></TextBox>
+            <TextBox Background="#FEFFB7" Margin="0,2,0,0" BorderBrush="{x:Null}">
+                <TextBox.Effect>
+                    <DropShadowEffect RenderingBias="Performance" Opacity="0.2"/>
+                </TextBox.Effect>
+            </TextBox>
             <TextBlock Margin="0,12,12,0" FontFamily="Serifiqo 4F Free Capitals" FontWeight="Bold">BANK CARD</TextBlock>
-            <TextBox Background="#FEFFB7" Margin="0,2,0,0"></TextBox>
-            <Button Grid.Row="2" Content="Pay" Background="#03DAC5" Height="22"  FontFamily="Serifiqo 4F Free Capitals" Margin="100,20,100,0" Click="ButtonPay_Click"/>
+            <TextBox Background="#FEFFB7" Margin="0,2,0,0" BorderBrush="{x:Null}">
+                <TextBox.Effect>
+                    <DropShadowEffect RenderingBias="Performance" Opacity="0.2"/>
+                </TextBox.Effect>
+            </TextBox>
+            <Button Grid.Row="2" Content="Pay" Background="#03DAC5" Height="22"  FontFamily="Serifiqo 4F Free Capitals" Margin="100,20,100,0" Click="ButtonPay_Click" BorderBrush="{x:Null}">
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="10"/>
+                    </Style>
+                </Button.Resources>
+                <Button.Effect>
+                    <DropShadowEffect RenderingBias="Performance" Opacity="0.2"/>
+                </Button.Effect>
+            </Button>
         </StackPanel>
 
     </Grid>

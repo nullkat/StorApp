@@ -13,9 +13,22 @@
             <Image Source="/img/captchaExample.png"></Image>
             <StackPanel Orientation="Horizontal" Width="128" HorizontalAlignment="Center">
                 <TextBlock Text="Ввод: " FontFamily="Serifiqo 4F Free Capitals" FontWeight="Bold" VerticalAlignment="Center"></TextBlock>
-                <TextBox x:Name="txtwCaptcha" Width="90"></TextBox>
+                <TextBox x:Name="txtwCaptcha" Width="90" Background="#FEFFB7" BorderBrush="{x:Null}">
+                    <TextBox.Effect>
+                        <DropShadowEffect RenderingBias="Performance" Opacity="0.2"/>
+                    </TextBox.Effect>
+                </TextBox>
             </StackPanel>
-            <Button Margin="25,20,25,0" Content="Применить" Background="#03DAC5" Click="ButtonLogin_Click"/>
+            <Button Margin="25,20,25,0" Content="Применить" Background="#03DAC5" Click="ButtonLogin_Click" BorderBrush="{x:Null}">
+                <Button.Effect>
+                    <DropShadowEffect RenderingBias="Performance" Opacity="0.2"/>
+                </Button.Effect>
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="10"/>
+                    </Style>
+                </Button.Resources>
+            </Button>
         </StackPanel>
     </Grid>
 </Window>

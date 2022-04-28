@@ -30,7 +30,16 @@
                     <TextBlock Text="2020-02-02" HorizontalAlignment="Left" Cursor="Arrow" FontSize="20" FontWeight="Normal" FontFamily="Segoe UI Semibold"></TextBlock>
                 </StackPanel>
             </Grid>
-            <Button Grid.Row="2" Content="ОК" Background="#03DAC5" Height="22"  FontFamily="Serifiqo 4F Free Capitals" Margin="300,26,303,0" Click="ButtonOk_Click"/>
+            <Button Grid.Row="2" Content="ОК" Background="#03DAC5" Height="22"  FontFamily="Serifiqo 4F Free Capitals" Margin="300,26,303,0" Click="ButtonOk_Click" BorderBrush="{x:Null}">
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="10"/>
+                    </Style>
+                </Button.Resources>
+                <Button.Effect>
+                    <DropShadowEffect RenderingBias="Performance" Opacity="0.2"/>
+                </Button.Effect>
+            </Button>
         </StackPanel>
     </Grid>
 </Page>

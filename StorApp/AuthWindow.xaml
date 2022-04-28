@@ -18,10 +18,27 @@
         <StackPanel Grid.Row="1" Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Stretch">
             <Image Source="/img/logo.png" Stretch="Uniform" StretchDirection="Both"></Image>
             <TextBlock Text="Login" FontSize="12" VerticalAlignment="Center" FontFamily="Serifiqo 4F Free Capitals" FontWeight="Bold" HorizontalAlignment="Center"></TextBlock>
-            <TextBox Name="LoginBox" Margin="25,0,25,5" Background="#FEFFB7" ></TextBox>
+            <TextBox Name="LoginBox" Margin="25,0,25,5" Background="#FEFFB7" BorderBrush="{x:Null}" >
+                <TextBox.Effect>
+                    <DropShadowEffect RenderingBias="Performance" Opacity="0.2"/>
+                </TextBox.Effect>
+            </TextBox>
             <TextBlock Text="Password" FontSize="12" VerticalAlignment="Center" FontFamily="Serifiqo 4F Free Capitals" FontWeight="Bold" HorizontalAlignment="Center"></TextBlock>
-            <PasswordBox Name="PasswordBox" Background="#FEFFB7" Margin="25,0,25,0"></PasswordBox>
-            <Button Margin="50,40,50,0" Content="Authorization" Background="#03DAC5" Click="ButtonLogin_Click"/>
+            <PasswordBox Name="PasswordBox" Background="#FEFFB7" Margin="25,0,25,0" BorderBrush="{x:Null}">
+                <PasswordBox.Effect>
+                    <DropShadowEffect RenderingBias="Performance" Opacity="0.2"/>
+                </PasswordBox.Effect>
+            </PasswordBox>
+            <Button Margin="50,40,50,0" Content="Authorization" Background="#03DAC5" Click="ButtonLogin_Click" BorderBrush="{x:Null}">
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="10"/>
+                    </Style>
+                </Button.Resources>
+                <Button.Effect>
+                    <DropShadowEffect RenderingBias="Performance" Opacity="0.2"/>
+                </Button.Effect>
+            </Button>
         </StackPanel>
     </Grid>
 </Window>

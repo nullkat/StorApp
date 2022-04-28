@@ -44,3 +44,5 @@ C:\Users\swall\Desktop\StorApp\StorApp\StorApp\obj\Debug\ProductManagerUserContr
 C:\Users\swall\Desktop\StorApp\StorApp\StorApp\obj\Debug\ProductManagerUserControl.baml
 C:\Users\swall\Desktop\StorApp\StorApp\StorApp\obj\Debug\ProductStorekeeperUserControl.g.cs
 C:\Users\swall\Desktop\StorApp\StorApp\StorApp\obj\Debug\ProductStorekeeperUserControl.baml
+C:\Users\swall\Desktop\StorApp\StorApp\StorApp\obj\Debug\ProductCheckUserControl.g.cs
+C:\Users\swall\Desktop\StorApp\StorApp\StorApp\obj\Debug\ProductCheckUserControl.baml

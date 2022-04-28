@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 C:\Users\swall\Desktop\StorApp\StorApp\StorApp\App.xaml
-12104765876
+13-1281118607
 2-1161474625
-35-236892021
+36969917934
 191503382618
-AuthWindow.xaml;CaptchaWindow.xaml;MainWindow.xaml;ManagerPage.xaml;PayPage.xaml;ProductManagerUserControl.xaml;ProductStorekeeperUserControl.xaml;ProductUserControl.xaml;SalesmanPage.xaml;StorekeeperPage.xaml;TicketPage.xaml;WelcomePage.xaml;
+AuthWindow.xaml;CaptchaWindow.xaml;MainWindow.xaml;ManagerPage.xaml;PayPage.xaml;ProductCheckUserControl.xaml;ProductManagerUserControl.xaml;ProductStorekeeperUserControl.xaml;ProductUserControl.xaml;SalesmanPage.xaml;StorekeeperPage.xaml;TicketPage.xaml;WelcomePage.xaml;
 
 False
 

@@ -32,6 +32,9 @@
 
                 </TextBox>
                 <ComboBox Width="106" Margin="12,0,0,0" Height="25" HorizontalAlignment="Right" BorderBrush="White">
+                    <ComboBoxItem>Любая</ComboBoxItem>
+                    <ComboBoxItem>Электроника</ComboBoxItem>
+                    <ComboBoxItem>Мебель</ComboBoxItem>
                     <ComboBox.Effect>
                         <DropShadowEffect Opacity="0.2"/>
                     </ComboBox.Effect>
@@ -41,14 +44,11 @@
                             <GradientStop Color="White" Offset="1"/>
                         </LinearGradientBrush>
                     </ComboBox.Background>
-                    <ComboBoxItem Content="Category 1"></ComboBoxItem>
-                    <ComboBoxItem Content="Category 2"></ComboBoxItem>
-                    <ComboBoxItem Content="Category 3"></ComboBoxItem>
                 </ComboBox>
             </StackPanel>
             <StackPanel Grid.Row="1" Background="WhiteSmoke" Margin="0,6,6,6" ScrollViewer.HorizontalScrollBarVisibility="Visible" CanVerticallyScroll="True">
                 <ListView HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="{x:Null}" BorderBrush="{x:Null}">
-                    <local:ProductUserControl HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <local:ProductUserControl HorizontalAlignment="Center" VerticalAlignment="Center" Loaded="ProductUserControl_Loaded">
                         <local:ProductUserControl.Effect>
                             <DropShadowEffect Opacity="0.2"/>
                         </local:ProductUserControl.Effect>
@@ -97,9 +97,21 @@
                         <Button.Effect>
                             <DropShadowEffect Opacity="0.2"/>
                         </Button.Effect>
+                        <Button.Resources>
+                            <Style TargetType="Border">
+                                <Setter Property="CornerRadius" Value="10"/>
+                            </Style>
+                        </Button.Resources>
                     </Button>
                 </StackPanel>
-                <StackPanel Grid.Column ="1" Background="WhiteSmoke" Margin="6,6,6,0"></StackPanel>
+                <StackPanel Grid.Column ="1" Background="WhiteSmoke" Margin="6,6,6,0">
+                    <TextBlock HorizontalAlignment="Center" FontFamily="Serifiqo 4F Free Capitals" FontSize="16" FontWeight="Bold" Margin="0,6,0,0">CHECK</TextBlock>
+                    <ListView HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="{x:Null}" BorderBrush="{x:Null}">
+                        <local:ProductCheckUserControl></local:ProductCheckUserControl>
+                        <local:ProductCheckUserControl></local:ProductCheckUserControl>
+                        <local:ProductCheckUserControl></local:ProductCheckUserControl>
+                    </ListView>
+                </StackPanel>
             </Grid>
 
         </Grid>
@@ -111,7 +123,12 @@
                 <RowDefinition Height="61*"/>
             </Grid.RowDefinitions>
             <Grid Grid.Row="0">
-                <Button Margin="12,0,0,12" Content="DESCRIPTION" Background="#03DAC5" HorizontalAlignment="Left" Width="78" FontFamily="Serifiqo 4F Free Capitals" Height="22" BorderBrush="{x:Null}">
+                <Button Margin="12,0,0,12" Content="DESCRIPTION" Background="#03DAC5" HorizontalAlignment="Left" Width="78" FontFamily="Serifiqo 4F Free Capitals" Height="22" BorderBrush="{x:Null}" RenderTransformOrigin="0,0">
+                    <Button.Resources>
+                        <Style TargetType="Border">
+                            <Setter Property="CornerRadius" Value="10"/>
+                        </Style>
+                    </Button.Resources>
                     <Button.Effect>
                         <DropShadowEffect Opacity="0.2"/>
                     </Button.Effect>
@@ -120,6 +137,11 @@
                     <Button.Effect>
                         <DropShadowEffect Opacity="0.2"/>
                     </Button.Effect>
+                    <Button.Resources>
+                        <Style TargetType="Border">
+                            <Setter Property="CornerRadius" Value="10"/>
+                        </Style>
+                    </Button.Resources>
                 </Button>
             </Grid>
             <StackPanel Grid.Row="1" Background="WhiteSmoke" Margin="6,6,0,6">
@@ -154,6 +176,11 @@
                 <Button.Effect>
                     <DropShadowEffect Opacity="0.2"/>
                 </Button.Effect>
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="10"/>
+                    </Style>
+                </Button.Resources>
             </Button>
         </Grid>
     </Grid>

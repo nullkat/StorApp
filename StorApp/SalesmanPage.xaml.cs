@@ -23,6 +23,8 @@ namespace StorApp
         public SalesmanPage()
         {
             InitializeComponent();
+            txtFIO.Text = Manager.currentUser.Fullname;
+            txtRole.Text = Manager.currentUser.Role;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -33,6 +35,11 @@ namespace StorApp
         private void ButtonPay_Click(object sender, RoutedEventArgs e)
         {
             Manager.MainFrame.Navigate(new PayPage());
+        }
+
+        private void ProductUserControl_Loaded(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

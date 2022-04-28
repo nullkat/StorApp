@@ -23,7 +23,16 @@
                 </StackPanel>
                 <Image Grid.Column="1" Source="/img/humanphoto.png" Margin="0,5,0,5"></Image>
             </Grid>
-            <Button Content="Continue" Margin="0,50,0,0" HorizontalAlignment="Center" Height="26" Width="200" Background="#03DAC5" Click="ContinueButton_Click" FontFamily="Serifiqo 4F Free Capitals"></Button>
+            <Button Content="Continue" Margin="0,50,0,0" HorizontalAlignment="Center" Height="26" Width="200" Background="#03DAC5" Click="ContinueButton_Click" FontFamily="Serifiqo 4F Free Capitals" BorderBrush="{x:Null}">
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="10"/>
+                    </Style>
+                </Button.Resources>
+                <Button.Effect>
+                    <DropShadowEffect RenderingBias="Performance" Opacity="0.2"/>
+                </Button.Effect>
+            </Button>
         </StackPanel>
     </Grid>
 </Page>

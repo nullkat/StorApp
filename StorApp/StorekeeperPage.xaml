@@ -17,12 +17,33 @@
         <Grid Grid.Row="0" Background="WhiteSmoke" Grid.RowSpan="2">
             <StackPanel>
                 <ListView Background="{x:Null}">
-                    <local:ProductStorekeeperUserControl></local:ProductStorekeeperUserControl>
-                    <local:ProductStorekeeperUserControl></local:ProductStorekeeperUserControl>
-                    <local:ProductStorekeeperUserControl></local:ProductStorekeeperUserControl>
+                    <local:ProductStorekeeperUserControl Width="773">
+                        <local:ProductStorekeeperUserControl.Effect>
+                            <DropShadowEffect RenderingBias="Performance" Opacity="0.2"/>
+                         </local:ProductStorekeeperUserControl.Effect>
+                    </local:ProductStorekeeperUserControl>
+                    <local:ProductStorekeeperUserControl Width="773">
+                        <local:ProductStorekeeperUserControl.Effect>
+                            <DropShadowEffect RenderingBias="Performance" Opacity="0.2"/>
+                        </local:ProductStorekeeperUserControl.Effect>
+                    </local:ProductStorekeeperUserControl>
+                    <local:ProductStorekeeperUserControl Width="772">
+                        <local:ProductStorekeeperUserControl.Effect>
+                            <DropShadowEffect RenderingBias="Performance" Opacity="0.2"/>
+                        </local:ProductStorekeeperUserControl.Effect>
+                    </local:ProductStorekeeperUserControl>
                 </ListView>
             </StackPanel>
         </Grid>
-        <Button Grid.Row="2" Content="Form an Application" HorizontalAlignment="Center" Width="154" Background="#03DAC5" FontFamily="Serifiqo 4F Free Capitals" Margin="0,12,0, 12" Grid.RowSpan="2"/>
+        <Button Grid.Row="2" Content="Form an Application" HorizontalAlignment="Center" Width="154" Background="#03DAC5" FontFamily="Serifiqo 4F Free Capitals" Margin="0,12,0, 12" Grid.RowSpan="2" BorderBrush="{x:Null}">
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="10"/>
+                </Style>
+            </Button.Resources>
+            <Button.Effect>
+                <DropShadowEffect RenderingBias="Performance" Opacity="0.2"/>
+            </Button.Effect>
+        </Button>
     </Grid>
 </Page>
