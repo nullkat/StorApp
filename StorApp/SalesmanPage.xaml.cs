@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 
 namespace StorApp
 {
@@ -25,6 +26,17 @@ namespace StorApp
             InitializeComponent();
             txtFIO.Text = Manager.currentUser.Fullname;
             txtRole.Text = Manager.currentUser.Role;
+
+            int time = 0;
+
+            var timer = new DispatcherTimer();
+            timer.Interval = TimeSpan.FromSeconds(1);
+            timer.Tick += new EventHandler((object s, EventArgs a) =>
+            {
+                time += 1;
+                TimerButt.Content = string.Format("{0}:{1}:{2}", time / 600, time / 60, time % 60);
+            });
+            timer.Start();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

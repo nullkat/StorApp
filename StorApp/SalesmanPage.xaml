@@ -93,7 +93,7 @@
                         </TextBlock.Effect>
                     </TextBlock>
                     <TextBlock Margin="12,6,12,0" FontFamily="Serifiqo 4F Free Capitals">TIMEWORKING</TextBlock>
-                    <Button Margin="12,2,12,0" Content="00:00:00" Background="#03DAC5" BorderBrush="{x:Null}">
+                    <Button x:Name="TimerButt" Margin="12,2,12,0" Content="00:00:00" Background="#03DAC5" BorderBrush="{x:Null}">
                         <Button.Effect>
                             <DropShadowEffect Opacity="0.2"/>
                         </Button.Effect>
