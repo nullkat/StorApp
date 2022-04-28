@@ -1,0 +1,162 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Хранилище StorDBModelContainer" CdmEntityContainer="StorDBEntities">
+    <EntitySetMapping Name="Contractor">
+      <EntityTypeMapping TypeName="StorDBModel.Contractor">
+        <MappingFragment StoreEntitySet="Contractor">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="LoyaltyCard">
+      <EntityTypeMapping TypeName="StorDBModel.LoyaltyCard">
+        <MappingFragment StoreEntitySet="LoyaltyCard">
+          <ScalarProperty Name="Number" ColumnName="Number" />
+          <ScalarProperty Name="Fullname" ColumnName="Fullname" />
+          <ScalarProperty Name="Lastname" ColumnName="Lastname" />
+          <ScalarProperty Name="Midlename" ColumnName="Midlename" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Movement">
+      <EntityTypeMapping TypeName="StorDBModel.Movement">
+        <MappingFragment StoreEntitySet="Movement">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="WerehauseFrom" ColumnName="WerehauseFrom" />
+          <ScalarProperty Name="WerehauseTo" ColumnName="WerehauseTo" />
+          <ScalarProperty Name="DateMovement" ColumnName="DateMovement" />
+          <ScalarProperty Name="Count" ColumnName="Count" />
+          <ScalarProperty Name="Product" ColumnName="Product" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="OpeningHour">
+      <EntityTypeMapping TypeName="StorDBModel.OpeningHour">
+        <MappingFragment StoreEntitySet="OpeningHour">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="PointOfSale" ColumnName="PointOfSale" />
+          <ScalarProperty Name="Day" ColumnName="Day" />
+          <ScalarProperty Name="StartWork" ColumnName="StartWork" />
+          <ScalarProperty Name="EndWork" ColumnName="EndWork" />
+          <ScalarProperty Name="StartDinner" ColumnName="StartDinner" />
+          <ScalarProperty Name="ExitDinner" ColumnName="ExitDinner" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Photo">
+      <EntityTypeMapping TypeName="StorDBModel.Photo">
+        <MappingFragment StoreEntitySet="Photo">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PointOfSale">
+      <EntityTypeMapping TypeName="StorDBModel.PointOfSale">
+        <MappingFragment StoreEntitySet="PointOfSale">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="Warehouse" ColumnName="Warehouse" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Product">
+      <EntityTypeMapping TypeName="StorDBModel.Product">
+        <MappingFragment StoreEntitySet="Product">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Category" ColumnName="Category" />
+          <ScalarProperty Name="Manufacturer" ColumnName="Manufacturer" />
+          <ScalarProperty Name="Photo" ColumnName="Photo" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Sale">
+      <EntityTypeMapping TypeName="StorDBModel.Sale">
+        <MappingFragment StoreEntitySet="Sale">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Datetime" ColumnName="Datetime" />
+          <ScalarProperty Name="PaymentType" ColumnName="PaymentType" />
+          <ScalarProperty Name="LoyaltyCard" ColumnName="LoyaltyCard" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="StorDBModel.sysdiagrams">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TrafficPath">
+      <EntityTypeMapping TypeName="StorDBModel.TrafficPath">
+        <MappingFragment StoreEntitySet="TrafficPath">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="PointOfSale" ColumnName="PointOfSale" />
+          <ScalarProperty Name="Datetime" ColumnName="Datetime" />
+          <ScalarProperty Name="Direction" ColumnName="Direction" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="StorDBModel.Users">
+        <MappingFragment StoreEntitySet="Users">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="Fullname" ColumnName="Fullname" />
+          <ScalarProperty Name="Login" ColumnName="Login" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Role" ColumnName="Role" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Warehouse">
+      <EntityTypeMapping TypeName="StorDBModel.Warehouse">
+        <MappingFragment StoreEntitySet="Warehouse">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="Contractor" ColumnName="Contractor" />
+          <ScalarProperty Name="Abbr" ColumnName="Abbr" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SaleProduct">
+      <EntityTypeMapping TypeName="StorDBModel.SaleProduct">
+        <MappingFragment StoreEntitySet="SaleProduct">
+          <ScalarProperty Name="Product" ColumnName="Product" />
+          <ScalarProperty Name="Sale" ColumnName="Sale" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="Хранилище StorDBModel.sp_alterdiagram" />
+    <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="Хранилище StorDBModel.sp_creatediagram" />
+    <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="Хранилище StorDBModel.sp_dropdiagram" />
+    <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="Хранилище StorDBModel.sp_helpdiagramdefinition">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="StorDBModel.sp_helpdiagramdefinition_Result">
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="Хранилище StorDBModel.sp_helpdiagrams">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="StorDBModel.sp_helpdiagrams_Result">
+          <ScalarProperty Name="Database" ColumnName="Database" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Owner" ColumnName="Owner" />
+          <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="Хранилище StorDBModel.sp_renamediagram" />
+    <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="Хранилище StorDBModel.sp_upgraddiagrams" />
+  </EntityContainerMapping>
+</Mapping>

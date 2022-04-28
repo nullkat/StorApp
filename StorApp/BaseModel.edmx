@@ -1,0 +1,890 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Хранилище StorDBModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Contractor">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="LoyaltyCard">
+          <Key>
+            <PropertyRef Name="Number" />
+          </Key>
+          <Property Name="Number" Type="nvarchar" MaxLength="16" Nullable="false" />
+          <Property Name="Fullname" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Lastname" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Midlename" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Address" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Movement">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="WerehauseFrom" Type="int" />
+          <Property Name="WerehauseTo" Type="int" Nullable="false" />
+          <Property Name="DateMovement" Type="date" Nullable="false" />
+          <Property Name="Count" Type="int" Nullable="false" />
+          <Property Name="Product" Type="int" Nullable="false" />
+          <Property Name="Price" Type="float" Nullable="false" />
+        </EntityType>
+        <EntityType Name="OpeningHour">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="PointOfSale" Type="int" Nullable="false" />
+          <Property Name="Day" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="StartWork" Type="time" Precision="7" Nullable="false" />
+          <Property Name="EndWork" Type="time" Precision="7" Nullable="false" />
+          <Property Name="StartDinner" Type="time" Precision="7" Nullable="false" />
+          <Property Name="ExitDinner" Type="time" Precision="7" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Photo">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PointOfSale">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Address" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Warehouse" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Product">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Category" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Manufacturer" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Photo" Type="int" />
+          <Property Name="Name" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Sale">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Datetime" Type="datetime" Nullable="false" />
+          <Property Name="PaymentType" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="LoyaltyCard" Type="nvarchar" MaxLength="16" Nullable="false" />
+        </EntityType>
+        <!--Ошибки, обнаруженные при создании:
+предупреждение 6002: В таблице или представлении "StorDB.dbo.SaleProduct" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
+        <EntityType Name="SaleProduct">
+          <Key>
+            <PropertyRef Name="Product" />
+            <PropertyRef Name="Sale" />
+          </Key>
+          <Property Name="Product" Type="int" Nullable="false" />
+          <Property Name="Sale" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="TrafficPath">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="PointOfSale" Type="int" Nullable="false" />
+          <Property Name="Datetime" Type="datetime" Nullable="false" />
+          <Property Name="Direction" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Fullname" Type="nvarchar" MaxLength="100" />
+          <Property Name="Login" Type="nchar" MaxLength="100" />
+          <Property Name="Password" Type="nchar" MaxLength="100" />
+          <Property Name="Role" Type="nchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Warehouse">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Address" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Contractor" Type="int" Nullable="false" />
+          <Property Name="Abbr" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Movement_Product">
+          <End Role="Product" Type="Self.Product" Multiplicity="1" />
+          <End Role="Movement" Type="Self.Movement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Movement">
+              <PropertyRef Name="Product" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Movement_Warehouse">
+          <End Role="Warehouse" Type="Self.Warehouse" Multiplicity="0..1" />
+          <End Role="Movement" Type="Self.Movement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Warehouse">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Movement">
+              <PropertyRef Name="WerehauseFrom" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Movement_Warehouse1">
+          <End Role="Warehouse" Type="Self.Warehouse" Multiplicity="1" />
+          <End Role="Movement" Type="Self.Movement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Warehouse">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Movement">
+              <PropertyRef Name="WerehauseTo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OpeningHour_PointOfSale">
+          <End Role="PointOfSale" Type="Self.PointOfSale" Multiplicity="1" />
+          <End Role="OpeningHour" Type="Self.OpeningHour" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PointOfSale">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="OpeningHour">
+              <PropertyRef Name="PointOfSale" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PointOfSale_Warehouse">
+          <End Role="Warehouse" Type="Self.Warehouse" Multiplicity="1" />
+          <End Role="PointOfSale" Type="Self.PointOfSale" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Warehouse">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PointOfSale">
+              <PropertyRef Name="Warehouse" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Product_Photo1">
+          <End Role="Photo" Type="Self.Photo" Multiplicity="0..1" />
+          <End Role="Product" Type="Self.Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Photo">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="Photo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Sale_LoyaltyCard">
+          <End Role="LoyaltyCard" Type="Self.LoyaltyCard" Multiplicity="1" />
+          <End Role="Sale" Type="Self.Sale" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LoyaltyCard">
+              <PropertyRef Name="Number" />
+            </Principal>
+            <Dependent Role="Sale">
+              <PropertyRef Name="LoyaltyCard" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SaleProduct_Product">
+          <End Role="Product" Type="Self.Product" Multiplicity="1" />
+          <End Role="SaleProduct" Type="Self.SaleProduct" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SaleProduct">
+              <PropertyRef Name="Product" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TrafficPaht_PointOfSale">
+          <End Role="PointOfSale" Type="Self.PointOfSale" Multiplicity="1" />
+          <End Role="TrafficPath" Type="Self.TrafficPath" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PointOfSale">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TrafficPath">
+              <PropertyRef Name="PointOfSale" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Warehouse_Contractor">
+          <End Role="Contractor" Type="Self.Contractor" Multiplicity="1" />
+          <End Role="Warehouse" Type="Self.Warehouse" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Contractor">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Warehouse">
+              <PropertyRef Name="Contractor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
+        <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="version" Type="int" Mode="In" />
+          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="version" Type="int" Mode="In" />
+          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <EntityContainer Name="Хранилище StorDBModelContainer">
+          <EntitySet Name="Contractor" EntityType="Self.Contractor" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LoyaltyCard" EntityType="Self.LoyaltyCard" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Movement" EntityType="Self.Movement" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OpeningHour" EntityType="Self.OpeningHour" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Photo" EntityType="Self.Photo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PointOfSale" EntityType="Self.PointOfSale" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Product" EntityType="Self.Product" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Sale" EntityType="Self.Sale" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TrafficPath" EntityType="Self.TrafficPath" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Warehouse" EntityType="Self.Warehouse" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SaleProduct" EntityType="Self.SaleProduct" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [SaleProduct].[Product] AS [Product], 
+    [SaleProduct].[Sale] AS [Sale]
+    FROM [dbo].[SaleProduct] AS [SaleProduct]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_Movement_Product" Association="Self.FK_Movement_Product">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="Movement" EntitySet="Movement" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Movement_Warehouse" Association="Self.FK_Movement_Warehouse">
+            <End Role="Warehouse" EntitySet="Warehouse" />
+            <End Role="Movement" EntitySet="Movement" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Movement_Warehouse1" Association="Self.FK_Movement_Warehouse1">
+            <End Role="Warehouse" EntitySet="Warehouse" />
+            <End Role="Movement" EntitySet="Movement" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OpeningHour_PointOfSale" Association="Self.FK_OpeningHour_PointOfSale">
+            <End Role="PointOfSale" EntitySet="PointOfSale" />
+            <End Role="OpeningHour" EntitySet="OpeningHour" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PointOfSale_Warehouse" Association="Self.FK_PointOfSale_Warehouse">
+            <End Role="Warehouse" EntitySet="Warehouse" />
+            <End Role="PointOfSale" EntitySet="PointOfSale" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Product_Photo1" Association="Self.FK_Product_Photo1">
+            <End Role="Photo" EntitySet="Photo" />
+            <End Role="Product" EntitySet="Product" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sale_LoyaltyCard" Association="Self.FK_Sale_LoyaltyCard">
+            <End Role="LoyaltyCard" EntitySet="LoyaltyCard" />
+            <End Role="Sale" EntitySet="Sale" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SaleProduct_Product" Association="Self.FK_SaleProduct_Product">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="SaleProduct" EntitySet="SaleProduct" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TrafficPaht_PointOfSale" Association="Self.FK_TrafficPaht_PointOfSale">
+            <End Role="PointOfSale" EntitySet="PointOfSale" />
+            <End Role="TrafficPath" EntitySet="TrafficPath" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Warehouse_Contractor" Association="Self.FK_Warehouse_Contractor">
+            <End Role="Contractor" EntitySet="Contractor" />
+            <End Role="Warehouse" EntitySet="Warehouse" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="StorDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Contractor">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Warehouse" Relationship="Self.FK_Warehouse_Contractor" FromRole="Contractor" ToRole="Warehouse" />
+        </EntityType>
+        <EntityType Name="LoyaltyCard">
+          <Key>
+            <PropertyRef Name="Number" />
+          </Key>
+          <Property Name="Number" Type="String" MaxLength="16" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Fullname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Lastname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Midlename" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Sale" Relationship="Self.FK_Sale_LoyaltyCard" FromRole="LoyaltyCard" ToRole="Sale" />
+        </EntityType>
+        <EntityType Name="Movement">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="WerehauseFrom" Type="Int32" />
+          <Property Name="WerehauseTo" Type="Int32" Nullable="false" />
+          <Property Name="DateMovement" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Count" Type="Int32" Nullable="false" />
+          <Property Name="Product" Type="Int32" Nullable="false" />
+          <Property Name="Price" Type="Double" Nullable="false" />
+          <NavigationProperty Name="Product1" Relationship="Self.FK_Movement_Product" FromRole="Movement" ToRole="Product" />
+          <NavigationProperty Name="Warehouse" Relationship="Self.FK_Movement_Warehouse" FromRole="Movement" ToRole="Warehouse" />
+          <NavigationProperty Name="Warehouse1" Relationship="Self.FK_Movement_Warehouse1" FromRole="Movement" ToRole="Warehouse" />
+        </EntityType>
+        <EntityType Name="OpeningHour">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="PointOfSale" Type="Int32" Nullable="false" />
+          <Property Name="Day" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="StartWork" Type="Time" Nullable="false" Precision="7" />
+          <Property Name="EndWork" Type="Time" Nullable="false" Precision="7" />
+          <Property Name="StartDinner" Type="Time" Nullable="false" Precision="7" />
+          <Property Name="ExitDinner" Type="Time" Nullable="false" Precision="7" />
+          <NavigationProperty Name="PointOfSale1" Relationship="Self.FK_OpeningHour_PointOfSale" FromRole="OpeningHour" ToRole="PointOfSale" />
+        </EntityType>
+        <EntityType Name="Photo">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Product" Relationship="Self.FK_Product_Photo1" FromRole="Photo" ToRole="Product" />
+        </EntityType>
+        <EntityType Name="PointOfSale">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Address" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Warehouse" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="OpeningHour" Relationship="Self.FK_OpeningHour_PointOfSale" FromRole="PointOfSale" ToRole="OpeningHour" />
+          <NavigationProperty Name="Warehouse1" Relationship="Self.FK_PointOfSale_Warehouse" FromRole="PointOfSale" ToRole="Warehouse" />
+          <NavigationProperty Name="TrafficPath" Relationship="Self.FK_TrafficPaht_PointOfSale" FromRole="PointOfSale" ToRole="TrafficPath" />
+        </EntityType>
+        <EntityType Name="Product">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Category" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Manufacturer" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Photo" Type="Int32" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Movement" Relationship="Self.FK_Movement_Product" FromRole="Product" ToRole="Movement" />
+          <NavigationProperty Name="Photo1" Relationship="Self.FK_Product_Photo1" FromRole="Product" ToRole="Photo" />
+          <NavigationProperty Name="SaleProduct" Relationship="Self.FK_SaleProduct_Product" FromRole="Product" ToRole="SaleProduct" />
+        </EntityType>
+        <EntityType Name="Sale">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Datetime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="PaymentType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LoyaltyCard" Type="String" MaxLength="16" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="LoyaltyCard1" Relationship="Self.FK_Sale_LoyaltyCard" FromRole="Sale" ToRole="LoyaltyCard" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="TrafficPath">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="PointOfSale" Type="Int32" Nullable="false" />
+          <Property Name="Datetime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Direction" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="PointOfSale1" Relationship="Self.FK_TrafficPaht_PointOfSale" FromRole="TrafficPath" ToRole="PointOfSale" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Fullname" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Login" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+          <Property Name="Password" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+          <Property Name="Role" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Warehouse">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Contractor" Type="Int32" Nullable="false" />
+          <Property Name="Abbr" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Contractor1" Relationship="Self.FK_Warehouse_Contractor" FromRole="Warehouse" ToRole="Contractor" />
+          <NavigationProperty Name="Movement" Relationship="Self.FK_Movement_Warehouse" FromRole="Warehouse" ToRole="Movement" />
+          <NavigationProperty Name="Movement1" Relationship="Self.FK_Movement_Warehouse1" FromRole="Warehouse" ToRole="Movement" />
+          <NavigationProperty Name="PointOfSale" Relationship="Self.FK_PointOfSale_Warehouse" FromRole="Warehouse" ToRole="PointOfSale" />
+        </EntityType>
+        <EntityType Name="SaleProduct">
+          <Key>
+            <PropertyRef Name="Product" />
+            <PropertyRef Name="Sale" />
+          </Key>
+          <Property Name="Product" Type="Int32" Nullable="false" />
+          <Property Name="Sale" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Product1" Relationship="Self.FK_SaleProduct_Product" FromRole="SaleProduct" ToRole="Product" />
+        </EntityType>
+        <Association Name="FK_Warehouse_Contractor">
+          <End Role="Contractor" Type="Self.Contractor" Multiplicity="1" />
+          <End Role="Warehouse" Type="Self.Warehouse" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Contractor">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Warehouse">
+              <PropertyRef Name="Contractor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Sale_LoyaltyCard">
+          <End Role="LoyaltyCard" Type="Self.LoyaltyCard" Multiplicity="1" />
+          <End Role="Sale" Type="Self.Sale" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LoyaltyCard">
+              <PropertyRef Name="Number" />
+            </Principal>
+            <Dependent Role="Sale">
+              <PropertyRef Name="LoyaltyCard" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Movement_Product">
+          <End Role="Product" Type="Self.Product" Multiplicity="1" />
+          <End Role="Movement" Type="Self.Movement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Movement">
+              <PropertyRef Name="Product" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Movement_Warehouse">
+          <End Role="Warehouse" Type="Self.Warehouse" Multiplicity="0..1" />
+          <End Role="Movement" Type="Self.Movement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Warehouse">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Movement">
+              <PropertyRef Name="WerehauseFrom" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Movement_Warehouse1">
+          <End Role="Warehouse" Type="Self.Warehouse" Multiplicity="1" />
+          <End Role="Movement" Type="Self.Movement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Warehouse">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Movement">
+              <PropertyRef Name="WerehauseTo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OpeningHour_PointOfSale">
+          <End Role="PointOfSale" Type="Self.PointOfSale" Multiplicity="1" />
+          <End Role="OpeningHour" Type="Self.OpeningHour" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PointOfSale">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="OpeningHour">
+              <PropertyRef Name="PointOfSale" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Product_Photo1">
+          <End Role="Photo" Type="Self.Photo" Multiplicity="0..1" />
+          <End Role="Product" Type="Self.Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Photo">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="Photo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PointOfSale_Warehouse">
+          <End Role="Warehouse" Type="Self.Warehouse" Multiplicity="1" />
+          <End Role="PointOfSale" Type="Self.PointOfSale" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Warehouse">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PointOfSale">
+              <PropertyRef Name="Warehouse" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TrafficPaht_PointOfSale">
+          <End Role="PointOfSale" Type="Self.PointOfSale" Multiplicity="1" />
+          <End Role="TrafficPath" Type="Self.TrafficPath" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PointOfSale">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TrafficPath">
+              <PropertyRef Name="PointOfSale" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SaleProduct_Product">
+          <End Role="Product" Type="Self.Product" Multiplicity="1" />
+          <End Role="SaleProduct" Type="Self.SaleProduct" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SaleProduct">
+              <PropertyRef Name="Product" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="StorDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Contractor" EntityType="Self.Contractor" />
+          <EntitySet Name="LoyaltyCard" EntityType="Self.LoyaltyCard" />
+          <EntitySet Name="Movement" EntityType="Self.Movement" />
+          <EntitySet Name="OpeningHour" EntityType="Self.OpeningHour" />
+          <EntitySet Name="Photo" EntityType="Self.Photo" />
+          <EntitySet Name="PointOfSale" EntityType="Self.PointOfSale" />
+          <EntitySet Name="Product" EntityType="Self.Product" />
+          <EntitySet Name="Sale" EntityType="Self.Sale" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="TrafficPath" EntityType="Self.TrafficPath" />
+          <EntitySet Name="Users" EntityType="Self.Users" />
+          <EntitySet Name="Warehouse" EntityType="Self.Warehouse" />
+          <EntitySet Name="SaleProduct" EntityType="Self.SaleProduct" />
+          <AssociationSet Name="FK_Warehouse_Contractor" Association="Self.FK_Warehouse_Contractor">
+            <End Role="Contractor" EntitySet="Contractor" />
+            <End Role="Warehouse" EntitySet="Warehouse" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sale_LoyaltyCard" Association="Self.FK_Sale_LoyaltyCard">
+            <End Role="LoyaltyCard" EntitySet="LoyaltyCard" />
+            <End Role="Sale" EntitySet="Sale" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Movement_Product" Association="Self.FK_Movement_Product">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="Movement" EntitySet="Movement" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Movement_Warehouse" Association="Self.FK_Movement_Warehouse">
+            <End Role="Warehouse" EntitySet="Warehouse" />
+            <End Role="Movement" EntitySet="Movement" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Movement_Warehouse1" Association="Self.FK_Movement_Warehouse1">
+            <End Role="Warehouse" EntitySet="Warehouse" />
+            <End Role="Movement" EntitySet="Movement" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OpeningHour_PointOfSale" Association="Self.FK_OpeningHour_PointOfSale">
+            <End Role="PointOfSale" EntitySet="PointOfSale" />
+            <End Role="OpeningHour" EntitySet="OpeningHour" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Product_Photo1" Association="Self.FK_Product_Photo1">
+            <End Role="Photo" EntitySet="Photo" />
+            <End Role="Product" EntitySet="Product" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PointOfSale_Warehouse" Association="Self.FK_PointOfSale_Warehouse">
+            <End Role="Warehouse" EntitySet="Warehouse" />
+            <End Role="PointOfSale" EntitySet="PointOfSale" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TrafficPaht_PointOfSale" Association="Self.FK_TrafficPaht_PointOfSale">
+            <End Role="PointOfSale" EntitySet="PointOfSale" />
+            <End Role="TrafficPath" EntitySet="TrafficPath" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SaleProduct_Product" Association="Self.FK_SaleProduct_Product">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="SaleProduct" EntitySet="SaleProduct" />
+          </AssociationSet>
+          <FunctionImport Name="sp_alterdiagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="sp_creatediagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="sp_dropdiagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(StorDBModel.sp_helpdiagramdefinition_Result)">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(StorDBModel.sp_helpdiagrams_Result)">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_renamediagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="new_diagramname" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_upgraddiagrams" />
+        </EntityContainer>
+        <ComplexType Name="sp_helpdiagramdefinition_Result">
+          <Property Type="Int32" Name="version" Nullable="true" />
+          <Property Type="Binary" Name="definition" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_helpdiagrams_Result">
+          <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+          <Property Type="Int32" Name="OwnerID" Nullable="false" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище StorDBModelContainer" CdmEntityContainer="StorDBEntities">
+          <EntitySetMapping Name="Contractor">
+            <EntityTypeMapping TypeName="StorDBModel.Contractor">
+              <MappingFragment StoreEntitySet="Contractor">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LoyaltyCard">
+            <EntityTypeMapping TypeName="StorDBModel.LoyaltyCard">
+              <MappingFragment StoreEntitySet="LoyaltyCard">
+                <ScalarProperty Name="Number" ColumnName="Number" />
+                <ScalarProperty Name="Fullname" ColumnName="Fullname" />
+                <ScalarProperty Name="Lastname" ColumnName="Lastname" />
+                <ScalarProperty Name="Midlename" ColumnName="Midlename" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Movement">
+            <EntityTypeMapping TypeName="StorDBModel.Movement">
+              <MappingFragment StoreEntitySet="Movement">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="WerehauseFrom" ColumnName="WerehauseFrom" />
+                <ScalarProperty Name="WerehauseTo" ColumnName="WerehauseTo" />
+                <ScalarProperty Name="DateMovement" ColumnName="DateMovement" />
+                <ScalarProperty Name="Count" ColumnName="Count" />
+                <ScalarProperty Name="Product" ColumnName="Product" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OpeningHour">
+            <EntityTypeMapping TypeName="StorDBModel.OpeningHour">
+              <MappingFragment StoreEntitySet="OpeningHour">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="PointOfSale" ColumnName="PointOfSale" />
+                <ScalarProperty Name="Day" ColumnName="Day" />
+                <ScalarProperty Name="StartWork" ColumnName="StartWork" />
+                <ScalarProperty Name="EndWork" ColumnName="EndWork" />
+                <ScalarProperty Name="StartDinner" ColumnName="StartDinner" />
+                <ScalarProperty Name="ExitDinner" ColumnName="ExitDinner" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Photo">
+            <EntityTypeMapping TypeName="StorDBModel.Photo">
+              <MappingFragment StoreEntitySet="Photo">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PointOfSale">
+            <EntityTypeMapping TypeName="StorDBModel.PointOfSale">
+              <MappingFragment StoreEntitySet="PointOfSale">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Warehouse" ColumnName="Warehouse" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Product">
+            <EntityTypeMapping TypeName="StorDBModel.Product">
+              <MappingFragment StoreEntitySet="Product">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Category" ColumnName="Category" />
+                <ScalarProperty Name="Manufacturer" ColumnName="Manufacturer" />
+                <ScalarProperty Name="Photo" ColumnName="Photo" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sale">
+            <EntityTypeMapping TypeName="StorDBModel.Sale">
+              <MappingFragment StoreEntitySet="Sale">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Datetime" ColumnName="Datetime" />
+                <ScalarProperty Name="PaymentType" ColumnName="PaymentType" />
+                <ScalarProperty Name="LoyaltyCard" ColumnName="LoyaltyCard" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="StorDBModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TrafficPath">
+            <EntityTypeMapping TypeName="StorDBModel.TrafficPath">
+              <MappingFragment StoreEntitySet="TrafficPath">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="PointOfSale" ColumnName="PointOfSale" />
+                <ScalarProperty Name="Datetime" ColumnName="Datetime" />
+                <ScalarProperty Name="Direction" ColumnName="Direction" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="StorDBModel.Users">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="Fullname" ColumnName="Fullname" />
+                <ScalarProperty Name="Login" ColumnName="Login" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Role" ColumnName="Role" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Warehouse">
+            <EntityTypeMapping TypeName="StorDBModel.Warehouse">
+              <MappingFragment StoreEntitySet="Warehouse">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Contractor" ColumnName="Contractor" />
+                <ScalarProperty Name="Abbr" ColumnName="Abbr" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SaleProduct">
+            <EntityTypeMapping TypeName="StorDBModel.SaleProduct">
+              <MappingFragment StoreEntitySet="SaleProduct">
+                <ScalarProperty Name="Product" ColumnName="Product" />
+                <ScalarProperty Name="Sale" ColumnName="Sale" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="Хранилище StorDBModel.sp_alterdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="Хранилище StorDBModel.sp_creatediagram" />
+          <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="Хранилище StorDBModel.sp_dropdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="Хранилище StorDBModel.sp_helpdiagramdefinition">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="StorDBModel.sp_helpdiagramdefinition_Result">
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="Хранилище StorDBModel.sp_helpdiagrams">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="StorDBModel.sp_helpdiagrams_Result">
+                <ScalarProperty Name="Database" ColumnName="Database" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Owner" ColumnName="Owner" />
+                <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="Хранилище StorDBModel.sp_renamediagram" />
+          <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="Хранилище StorDBModel.sp_upgraddiagrams" />
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

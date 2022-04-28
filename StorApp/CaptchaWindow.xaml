@@ -1,0 +1,21 @@
+﻿<Window x:Class="StorApp.CaptchaWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:StorApp"
+        mc:Ignorable="d"
+        Title="CaptchaWindow" Height="200" Width="200
+        ">
+    <Grid>
+        <StackPanel VerticalAlignment="Center" Margin="25,0,25,0">
+            <TextBlock HorizontalAlignment="Center" FontFamily="Serifiqo 4F Free Capitals" FontWeight="Bold">CAPTCHA</TextBlock>
+            <Image Source="/img/captchaExample.png"></Image>
+            <StackPanel Orientation="Horizontal" Width="128" HorizontalAlignment="Center">
+                <TextBlock Text="Ввод: " FontFamily="Serifiqo 4F Free Capitals" FontWeight="Bold" VerticalAlignment="Center"></TextBlock>
+                <TextBox x:Name="txtwCaptcha" Width="90"></TextBox>
+            </StackPanel>
+            <Button Margin="25,20,25,0" Content="Применить" Background="#03DAC5" Click="ButtonLogin_Click"/>
+        </StackPanel>
+    </Grid>
+</Window>

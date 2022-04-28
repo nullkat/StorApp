@@ -1,0 +1,25 @@
+﻿<Page x:Class="StorApp.PayPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:StorApp"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="PayPage">
+
+    <Grid Background="White">
+        <StackPanel Orientation="Vertical" VerticalAlignment="Center" Margin="250,0,250,0">
+            <ComboBox Margin="0,0,0,0" SelectedIndex="0">
+                <ComboBoxItem>Bank card</ComboBoxItem>
+                <ComboBoxItem>Cash</ComboBoxItem>
+            </ComboBox>
+            <TextBlock Margin="0,12,12,0" FontFamily="Serifiqo 4F Free Capitals" FontWeight="Bold">LOYALTY CARD</TextBlock>
+            <TextBox Background="#FEFFB7" Margin="0,2,0,0"></TextBox>
+            <TextBlock Margin="0,12,12,0" FontFamily="Serifiqo 4F Free Capitals" FontWeight="Bold">BANK CARD</TextBlock>
+            <TextBox Background="#FEFFB7" Margin="0,2,0,0"></TextBox>
+            <Button Grid.Row="2" Content="Pay" Background="#03DAC5" Height="22"  FontFamily="Serifiqo 4F Free Capitals" Margin="100,20,100,0" Click="ButtonPay_Click"/>
+        </StackPanel>
+
+    </Grid>
+</Page>

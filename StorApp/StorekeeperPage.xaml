@@ -1,0 +1,28 @@
+﻿<Page x:Class="StorApp.StorekeeperPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:StorApp"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="StoreKeeper">
+
+    <Grid Background="White">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="8*"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <StackPanel Orientation="Vertical" Grid.RowSpan="2"/>
+        <Grid Grid.Row="0" Background="WhiteSmoke" Grid.RowSpan="2">
+            <StackPanel>
+                <ListView Background="{x:Null}">
+                    <local:ProductStorekeeperUserControl></local:ProductStorekeeperUserControl>
+                    <local:ProductStorekeeperUserControl></local:ProductStorekeeperUserControl>
+                    <local:ProductStorekeeperUserControl></local:ProductStorekeeperUserControl>
+                </ListView>
+            </StackPanel>
+        </Grid>
+        <Button Grid.Row="2" Content="Form an Application" HorizontalAlignment="Center" Width="154" Background="#03DAC5" FontFamily="Serifiqo 4F Free Capitals" Margin="0,12,0, 12" Grid.RowSpan="2"/>
+    </Grid>
+</Page>

@@ -1,0 +1,360 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="StorDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Contractor">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Warehouse" Relationship="Self.FK_Warehouse_Contractor" FromRole="Contractor" ToRole="Warehouse" />
+  </EntityType>
+  <EntityType Name="LoyaltyCard">
+    <Key>
+      <PropertyRef Name="Number" />
+    </Key>
+    <Property Name="Number" Type="String" MaxLength="16" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Fullname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Lastname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Midlename" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Sale" Relationship="Self.FK_Sale_LoyaltyCard" FromRole="LoyaltyCard" ToRole="Sale" />
+  </EntityType>
+  <EntityType Name="Movement">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="WerehauseFrom" Type="Int32" />
+    <Property Name="WerehauseTo" Type="Int32" Nullable="false" />
+    <Property Name="DateMovement" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Count" Type="Int32" Nullable="false" />
+    <Property Name="Product" Type="Int32" Nullable="false" />
+    <Property Name="Price" Type="Double" Nullable="false" />
+    <NavigationProperty Name="Product1" Relationship="Self.FK_Movement_Product" FromRole="Movement" ToRole="Product" />
+    <NavigationProperty Name="Warehouse" Relationship="Self.FK_Movement_Warehouse" FromRole="Movement" ToRole="Warehouse" />
+    <NavigationProperty Name="Warehouse1" Relationship="Self.FK_Movement_Warehouse1" FromRole="Movement" ToRole="Warehouse" />
+  </EntityType>
+  <EntityType Name="OpeningHour">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="PointOfSale" Type="Int32" Nullable="false" />
+    <Property Name="Day" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="StartWork" Type="Time" Nullable="false" Precision="7" />
+    <Property Name="EndWork" Type="Time" Nullable="false" Precision="7" />
+    <Property Name="StartDinner" Type="Time" Nullable="false" Precision="7" />
+    <Property Name="ExitDinner" Type="Time" Nullable="false" Precision="7" />
+    <NavigationProperty Name="PointOfSale1" Relationship="Self.FK_OpeningHour_PointOfSale" FromRole="OpeningHour" ToRole="PointOfSale" />
+  </EntityType>
+  <EntityType Name="Photo">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Product" Relationship="Self.FK_Product_Photo1" FromRole="Photo" ToRole="Product" />
+  </EntityType>
+  <EntityType Name="PointOfSale">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="Address" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Warehouse" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="OpeningHour" Relationship="Self.FK_OpeningHour_PointOfSale" FromRole="PointOfSale" ToRole="OpeningHour" />
+    <NavigationProperty Name="Warehouse1" Relationship="Self.FK_PointOfSale_Warehouse" FromRole="PointOfSale" ToRole="Warehouse" />
+    <NavigationProperty Name="TrafficPath" Relationship="Self.FK_TrafficPaht_PointOfSale" FromRole="PointOfSale" ToRole="TrafficPath" />
+  </EntityType>
+  <EntityType Name="Product">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="Category" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Manufacturer" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Photo" Type="Int32" />
+    <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Movement" Relationship="Self.FK_Movement_Product" FromRole="Product" ToRole="Movement" />
+    <NavigationProperty Name="Photo1" Relationship="Self.FK_Product_Photo1" FromRole="Product" ToRole="Photo" />
+    <NavigationProperty Name="SaleProduct" Relationship="Self.FK_SaleProduct_Product" FromRole="Product" ToRole="SaleProduct" />
+  </EntityType>
+  <EntityType Name="Sale">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="Datetime" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="PaymentType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="LoyaltyCard" Type="String" MaxLength="16" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="LoyaltyCard1" Relationship="Self.FK_Sale_LoyaltyCard" FromRole="Sale" ToRole="LoyaltyCard" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="TrafficPath">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="PointOfSale" Type="Int32" Nullable="false" />
+    <Property Name="Datetime" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Direction" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="PointOfSale1" Relationship="Self.FK_TrafficPaht_PointOfSale" FromRole="TrafficPath" ToRole="PointOfSale" />
+  </EntityType>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Fullname" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Login" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+    <Property Name="Password" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+    <Property Name="Role" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Warehouse">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Contractor" Type="Int32" Nullable="false" />
+    <Property Name="Abbr" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Contractor1" Relationship="Self.FK_Warehouse_Contractor" FromRole="Warehouse" ToRole="Contractor" />
+    <NavigationProperty Name="Movement" Relationship="Self.FK_Movement_Warehouse" FromRole="Warehouse" ToRole="Movement" />
+    <NavigationProperty Name="Movement1" Relationship="Self.FK_Movement_Warehouse1" FromRole="Warehouse" ToRole="Movement" />
+    <NavigationProperty Name="PointOfSale" Relationship="Self.FK_PointOfSale_Warehouse" FromRole="Warehouse" ToRole="PointOfSale" />
+  </EntityType>
+  <EntityType Name="SaleProduct">
+    <Key>
+      <PropertyRef Name="Product" />
+      <PropertyRef Name="Sale" />
+    </Key>
+    <Property Name="Product" Type="Int32" Nullable="false" />
+    <Property Name="Sale" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Product1" Relationship="Self.FK_SaleProduct_Product" FromRole="SaleProduct" ToRole="Product" />
+  </EntityType>
+  <Association Name="FK_Warehouse_Contractor">
+    <End Role="Contractor" Type="Self.Contractor" Multiplicity="1" />
+    <End Role="Warehouse" Type="Self.Warehouse" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Contractor">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Warehouse">
+        <PropertyRef Name="Contractor" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Sale_LoyaltyCard">
+    <End Role="LoyaltyCard" Type="Self.LoyaltyCard" Multiplicity="1" />
+    <End Role="Sale" Type="Self.Sale" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LoyaltyCard">
+        <PropertyRef Name="Number" />
+      </Principal>
+      <Dependent Role="Sale">
+        <PropertyRef Name="LoyaltyCard" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Movement_Product">
+    <End Role="Product" Type="Self.Product" Multiplicity="1" />
+    <End Role="Movement" Type="Self.Movement" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Movement">
+        <PropertyRef Name="Product" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Movement_Warehouse">
+    <End Role="Warehouse" Type="Self.Warehouse" Multiplicity="0..1" />
+    <End Role="Movement" Type="Self.Movement" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Warehouse">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Movement">
+        <PropertyRef Name="WerehauseFrom" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Movement_Warehouse1">
+    <End Role="Warehouse" Type="Self.Warehouse" Multiplicity="1" />
+    <End Role="Movement" Type="Self.Movement" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Warehouse">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Movement">
+        <PropertyRef Name="WerehauseTo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_OpeningHour_PointOfSale">
+    <End Role="PointOfSale" Type="Self.PointOfSale" Multiplicity="1" />
+    <End Role="OpeningHour" Type="Self.OpeningHour" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PointOfSale">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="OpeningHour">
+        <PropertyRef Name="PointOfSale" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Product_Photo1">
+    <End Role="Photo" Type="Self.Photo" Multiplicity="0..1" />
+    <End Role="Product" Type="Self.Product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Photo">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Product">
+        <PropertyRef Name="Photo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PointOfSale_Warehouse">
+    <End Role="Warehouse" Type="Self.Warehouse" Multiplicity="1" />
+    <End Role="PointOfSale" Type="Self.PointOfSale" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Warehouse">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PointOfSale">
+        <PropertyRef Name="Warehouse" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TrafficPaht_PointOfSale">
+    <End Role="PointOfSale" Type="Self.PointOfSale" Multiplicity="1" />
+    <End Role="TrafficPath" Type="Self.TrafficPath" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PointOfSale">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TrafficPath">
+        <PropertyRef Name="PointOfSale" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SaleProduct_Product">
+    <End Role="Product" Type="Self.Product" Multiplicity="1" />
+    <End Role="SaleProduct" Type="Self.SaleProduct" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="SaleProduct">
+        <PropertyRef Name="Product" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="StorDBEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Contractor" EntityType="Self.Contractor" />
+    <EntitySet Name="LoyaltyCard" EntityType="Self.LoyaltyCard" />
+    <EntitySet Name="Movement" EntityType="Self.Movement" />
+    <EntitySet Name="OpeningHour" EntityType="Self.OpeningHour" />
+    <EntitySet Name="Photo" EntityType="Self.Photo" />
+    <EntitySet Name="PointOfSale" EntityType="Self.PointOfSale" />
+    <EntitySet Name="Product" EntityType="Self.Product" />
+    <EntitySet Name="Sale" EntityType="Self.Sale" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+    <EntitySet Name="TrafficPath" EntityType="Self.TrafficPath" />
+    <EntitySet Name="Users" EntityType="Self.Users" />
+    <EntitySet Name="Warehouse" EntityType="Self.Warehouse" />
+    <EntitySet Name="SaleProduct" EntityType="Self.SaleProduct" />
+    <AssociationSet Name="FK_Warehouse_Contractor" Association="Self.FK_Warehouse_Contractor">
+      <End Role="Contractor" EntitySet="Contractor" />
+      <End Role="Warehouse" EntitySet="Warehouse" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Sale_LoyaltyCard" Association="Self.FK_Sale_LoyaltyCard">
+      <End Role="LoyaltyCard" EntitySet="LoyaltyCard" />
+      <End Role="Sale" EntitySet="Sale" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Movement_Product" Association="Self.FK_Movement_Product">
+      <End Role="Product" EntitySet="Product" />
+      <End Role="Movement" EntitySet="Movement" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Movement_Warehouse" Association="Self.FK_Movement_Warehouse">
+      <End Role="Warehouse" EntitySet="Warehouse" />
+      <End Role="Movement" EntitySet="Movement" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Movement_Warehouse1" Association="Self.FK_Movement_Warehouse1">
+      <End Role="Warehouse" EntitySet="Warehouse" />
+      <End Role="Movement" EntitySet="Movement" />
+    </AssociationSet>
+    <AssociationSet Name="FK_OpeningHour_PointOfSale" Association="Self.FK_OpeningHour_PointOfSale">
+      <End Role="PointOfSale" EntitySet="PointOfSale" />
+      <End Role="OpeningHour" EntitySet="OpeningHour" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Product_Photo1" Association="Self.FK_Product_Photo1">
+      <End Role="Photo" EntitySet="Photo" />
+      <End Role="Product" EntitySet="Product" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PointOfSale_Warehouse" Association="Self.FK_PointOfSale_Warehouse">
+      <End Role="Warehouse" EntitySet="Warehouse" />
+      <End Role="PointOfSale" EntitySet="PointOfSale" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TrafficPaht_PointOfSale" Association="Self.FK_TrafficPaht_PointOfSale">
+      <End Role="PointOfSale" EntitySet="PointOfSale" />
+      <End Role="TrafficPath" EntitySet="TrafficPath" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SaleProduct_Product" Association="Self.FK_SaleProduct_Product">
+      <End Role="Product" EntitySet="Product" />
+      <End Role="SaleProduct" EntitySet="SaleProduct" />
+    </AssociationSet>
+    <FunctionImport Name="sp_alterdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_creatediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_dropdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(StorDBModel.sp_helpdiagramdefinition_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(StorDBModel.sp_helpdiagrams_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_renamediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="new_diagramname" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_upgraddiagrams" />
+  </EntityContainer>
+  <ComplexType Name="sp_helpdiagramdefinition_Result">
+    <Property Type="Int32" Name="version" Nullable="true" />
+    <Property Type="Binary" Name="definition" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="sp_helpdiagrams_Result">
+    <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+    <Property Type="Int32" Name="OwnerID" Nullable="false" />
+  </ComplexType>
+</Schema>
